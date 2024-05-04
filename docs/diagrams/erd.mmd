@@ -1,0 +1,29 @@
+erDiagram
+    USERS ||--|{ TASKS : creates
+    USERS {
+        string email
+        int role_id FK
+    }
+    USERS ||--|{ TASKS : "is assigned to"
+    TASKS {
+        string title
+        string status_id FK
+        int created_by FK "Created by user"
+        int assigned_to FK "Assigned to user"
+        datetime created_at
+        datetime updated_at
+        datetime deleted_at
+    }
+    USERS }|--|{ WORKSPACES : "belongs to"
+    WORKSPACES
+    USERS ||--|| ROLES : has
+    ROLES {
+        string name
+    }
+    STATUS ||--|{ TASKS : has
+    STATUS {
+        string description
+        string color
+        int type
+    }
+    WORKSPACES }|--|{ STATUS : has
