@@ -1,0 +1,22 @@
+[{
+    "model": "roles.roles",
+    "pk": 1,
+    "fields": {
+        "name": "admin"
+    }
+}, {
+    "model": "users.users",
+    "pk": 1,
+    "fields": {
+        "email": "on@bankan.com",
+        "role": 1
+    }
+}, {
+    "model": "status.status",
+    "pk": 1,
+    "fields": {
+        "description": "On Hold",
+        "color": "#002984",
+        "status_type": "INITIAL"
+    }
+}]

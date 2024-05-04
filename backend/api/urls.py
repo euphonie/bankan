@@ -24,7 +24,15 @@ urlpatterns = [
     path(
         'api/roles/',
         include('roles.urls'),
-    )
+    ),
+    path(
+        'api/users/',
+        include('users.urls'),
+    ),
+    path(
+        'api/tasks/',
+        include('tasks.urls'),
+    ),
 ]
 
 urlpatterns += [
