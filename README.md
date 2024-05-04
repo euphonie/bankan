@@ -64,6 +64,18 @@ Idea: User can be assigned to workspaces which contain custom setings like: user
 
 ## Setup
 
+
+## Running Locally
+
+```sh
+# Running backend
+cd backend
+pip install -r requirements.txt
+
+# Dev server starts at port 8000
+python manage.py runserver 
+```
+
 ## Roadmap
 
 ### v0.0.1
