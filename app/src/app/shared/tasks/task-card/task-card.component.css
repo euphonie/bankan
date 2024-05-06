@@ -2,3 +2,7 @@
     color: #bbb;
     font-size: 0.8em;
 }
+
+.pull-right {
+    float: right;
+}

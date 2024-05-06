@@ -1,6 +1,14 @@
 <form [formGroup]="form">
-    <input type="text" formControlName="title" />
-
+    <mat-form-field>
+        <mat-label>Ttile:</mat-label>
+        <input matInput type="text" name="title"  formControlName="title" />
+      </mat-form-field>
+    <mat-form-field>
+        <mat-label>Status:</mat-label>
+        <mat-select *ngIf="statuses$ | async as statuses" formControlName="statusId">
+          <mat-option name="status" *ngFor="let status of statuses" [value]="status.id">
+            {{ status.description }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 </form>
-<button mat-button *ngIf="isNewModel()" (click)="onCreate()">Create</button>
-<button mat-button *ngIf="!isNewModel()" (click)="onUpdate()">Update</button>

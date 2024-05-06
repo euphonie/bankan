@@ -31,6 +31,8 @@ export class TaskListComponent implements OnInit {
     this.loading$ = this.store.pipe(select(selectTasksLoading));
     this.error$ = this.store.pipe(select(selectTasksError));
 
+    this.tasksWithStatus$.subscribe(task => console.log(task));
+
     this.error$.subscribe(err =>  {
       if (!err) return;
       this.errorMessage = JSON.stringify(err.error)});

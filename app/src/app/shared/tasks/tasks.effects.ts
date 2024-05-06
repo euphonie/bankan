@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap, of, switchMap } from "rxjs";
-import { loadTasksFailure, loadTasksSuccess, loadTasks, addTask, addTaskSuccess, addTaskFailure } from "./tasks.actions";
+import { loadTasksFailure, loadTasksSuccess, loadTasks, addTask, addTaskSuccess, addTaskFailure, editTaskFailure, editTaskSuccess, editTask } from "./tasks.actions";
 import { TaskService } from "./tasks.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Task, TaskDto } from "./tasks.model";
@@ -30,6 +30,18 @@ export class TasksEffects {
                 this.taskService.addTask(this.modelToDto(action.task)).pipe(
                     map((task: TaskDto) => {return addTaskSuccess({ task: this.dtoToModel(task) })}),
                     catchError(error => of(addTaskFailure({ error })))
+                )
+            )
+        )
+    );
+
+    editTask$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(editTask),
+            switchMap(action =>
+                this.taskService.editTask(this.modelToDto(action.task)).pipe(
+                    map((task: TaskDto) => {return editTaskSuccess({ task: this.dtoToModel(task) })}),
+                    catchError(error => of(editTaskFailure({ error })))
                 )
             )
         )

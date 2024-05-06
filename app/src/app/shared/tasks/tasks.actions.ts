@@ -8,3 +8,7 @@ export const loadTasksFailure = createAction('[TASK] Load Tasks Failure', props<
 export const addTask = createAction('[TASK] Add Task', props<{task: Task}>())
 export const addTaskSuccess = createAction('[TASK] Add Task Success', props<{task: Task}>())
 export const addTaskFailure = createAction('[TASK] Add Task Failure', props<{error: any}>())
+
+export const editTask = createAction('[TASK] Edit Task', props<{task: Task}>())
+export const editTaskSuccess = createAction('[TASK] Edit Task Success', props<{task: Task}>())
+export const editTaskFailure = createAction('[TASK] Edit Task Failure', props<{error: any}>())

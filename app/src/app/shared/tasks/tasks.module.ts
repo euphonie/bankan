@@ -9,6 +9,9 @@ import { TaskFormComponent } from "./task-form/task-form.component";
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
     declarations: [TaskCardComponent, TaskListComponent, TaskModalComponent, TaskFormComponent],
@@ -18,6 +21,9 @@ import { MatListModule } from '@angular/material/list';
         MatDialogModule,
         MatListModule,
         MatButtonModule,
+        MatInputModule,
+        MatSelectModule,
+        MatFormFieldModule,
         ReactiveFormsModule,
     ],
     exports: [TaskCardComponent, TaskListComponent, TaskModalComponent, TaskFormComponent]

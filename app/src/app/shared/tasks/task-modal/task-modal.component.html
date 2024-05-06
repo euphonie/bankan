@@ -2,5 +2,9 @@
     <button mat-button (click)="close()">Close</button>
 </h1>
 <div mat-dialog-content>
-    <app-task-form [task]="task"></app-task-form>
+    <app-task-form [task]="data.task"></app-task-form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close *ngIf="isNewModel()" (click)="onCreate()">Create</button>
+    <button mat-button mat-dialog-close *ngIf="!isNewModel()" (click)="onUpdate()">Update</button>
 </div>

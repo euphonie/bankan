@@ -6,6 +6,8 @@
         </mat-card-title>
         <mat-card-subtitle>Last updated: {{task.updated_at | date: 'dd/MM/yyyy HH:mm'}}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content></mat-card-content>
+    <mat-card-content>
+        <button mat-button class="pull-right" (click)="openEditModal()">Edit</button>
+    </mat-card-content>
 </mat-card>
   

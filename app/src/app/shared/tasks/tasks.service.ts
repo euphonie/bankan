@@ -19,4 +19,9 @@ export class TaskService {
     addTask(task: TaskDto): Observable<TaskDto> {
         return this.http.post<TaskDto>(this.apiUrl, task);
     }
+
+    editTask(task: TaskDto): Observable<TaskDto> {
+        const editUrl = `${this.apiUrl}${task.id}/`;
+        return this.http.put<TaskDto>(editUrl, task);
+    }
 }

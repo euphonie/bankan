@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Task } from "./tasks.model";
-import { addTask, addTaskFailure, addTaskSuccess, loadTasks, loadTasksFailure, loadTasksSuccess } from './tasks.actions';
+import { addTask, addTaskFailure, addTaskSuccess, editTask, editTaskFailure, editTaskSuccess, loadTasks, loadTasksFailure, loadTasksSuccess } from './tasks.actions';
 
 export interface TaskState {
     tasks: Task[];
@@ -48,6 +48,23 @@ export const tasksReducer = createReducer(
         loading: false,
     })),
     on(addTaskFailure, (state: TaskState, {error}) => ({
+        ...state,
+        loading: false,
+        error
+    })),
+    // edit
+    on(editTask, state => ({
+        ...state, 
+        loading: true,
+        error: null
+    })),
+    on(editTaskSuccess, (state: TaskState, {task}) => ({
+        ...state,
+        tasks: state.tasks.map((oldTask) => (oldTask.id === task.id) ? task : oldTask),
+        error: null,
+        loading: false,
+    })),
+    on(editTaskFailure, (state: TaskState, {error}) => ({
         ...state,
         loading: false,
         error
