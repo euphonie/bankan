@@ -6,7 +6,7 @@ from status.models import Status
 from rest_framework import status as rest_status
 
 class TasksAPITests(APITestCase):
-    fixtures = ['tasks/fixtures/initial_data.json']
+    fixtures = ['tasks/fixtures/test_data.json']
 
     def setUp(self):
         self.user = Users.objects.filter(email='on@bankan.com').first()

@@ -1,0 +1,7 @@
+[{
+    "model": "roles.roles",
+    "pk": 1,
+    "fields": {
+        "name": "admin"
+    }
+}]

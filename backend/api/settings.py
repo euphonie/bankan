@@ -20,10 +20,11 @@ INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth',
     'django.contrib.contenttypes', 'django.contrib.sessions',
     'django.contrib.messages', 'django.contrib.staticfiles', 'drf_yasg',
-    'rest_framework', 'status', 'roles', 'tasks', 'users'
+    'rest_framework', 'status', 'roles', 'tasks', 'users', 'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -115,3 +116,19 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200"
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]

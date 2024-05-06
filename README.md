@@ -41,7 +41,7 @@ Models/Entities:
 - status_fk (reference to Status)
 - created_at (datetime)
 - updated_at (datetime)
-- created_by_fk (reference to User) (Nice to Have)
+- owner_fk (reference to User) (Nice to Have)
 - assgined_to_fk (reference to User) (Nice to Have)
 
 2. === Status ===

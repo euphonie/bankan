@@ -1,0 +1,20 @@
+[
+    {
+        "model": "status.status",
+        "pk": 1,
+        "fields": {
+            "description": "New",
+            "color": "#002984",
+            "status_type": "INITIAL"
+        }
+    },
+    {
+        "model": "status.status",
+        "pk": 2,
+        "fields": {
+            "description": "Completed",
+            "color": "#002984",
+            "status_type": "FINAL"
+        }
+    }
+]

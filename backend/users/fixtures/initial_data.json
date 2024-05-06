@@ -1,0 +1,8 @@
+[ {
+    "model": "users.users",
+    "pk": 1,
+    "fields": {
+        "email": "on@bankan.com",
+        "role": 1
+    }
+}]
