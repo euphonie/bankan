@@ -3,7 +3,10 @@ import { Observable, of } from 'rxjs';
 import { Task } from '../tasks.model';
 import { Store, select } from '@ngrx/store';
 import { loadTasks } from '../tasks.actions';
-import { selectTasks, selectTasksError, selectTasksLoading } from '../tasks.selectors';
+import { selectTasksError, selectTasksLoading, selectTasksWithStatus } from '../tasks.selectors';
+import { AppState } from '../../../app.state';
+import { loadStatuses } from '../../statuses/statuses.actions';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-task-list',
@@ -12,16 +15,24 @@ import { selectTasks, selectTasksError, selectTasksLoading } from '../tasks.sele
 })
 export class TaskListComponent implements OnInit {
 
-  tasks$: Observable<Task[]> = of();
-  loading$: Observable<boolean> = of();
-  error$: Observable<any> = of();
+  tasksWithStatus$!: Observable<Task[]>;
+  loading$!: Observable<boolean>;
+  error$!: Observable<HttpErrorResponse>;
 
-  constructor(private store:Store) {}
+  errorMessage: string = '';
+
+  constructor(private store:Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadTasks());
-    this.tasks$ = this.store.pipe(select(selectTasks));
+    this.store.dispatch(loadStatuses());
+
+    this.tasksWithStatus$ = this.store.pipe(select(selectTasksWithStatus));
     this.loading$ = this.store.pipe(select(selectTasksLoading));
     this.error$ = this.store.pipe(select(selectTasksError));
+
+    this.error$.subscribe(err =>  {
+      if (!err) return;
+      this.errorMessage = JSON.stringify(err.error)});
   }
 }

@@ -1,4 +1,11 @@
 <mat-card>
-    <mat-card-content>{{ task.title }}</mat-card-content>
+    <mat-card-header>
+        <mat-card-title>
+            {{ task.title }}
+            <em class="task-title-status">{{task.status?.description || ''}}</em>
+        </mat-card-title>
+        <mat-card-subtitle>Last updated: {{task.updated_at | date: 'dd/MM/yyyy HH:mm'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content></mat-card-content>
 </mat-card>
   

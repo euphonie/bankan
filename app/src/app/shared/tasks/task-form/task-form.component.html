@@ -1,3 +1,6 @@
 <form [formGroup]="form">
     <input type="text" formControlName="title" />
+
 </form>
+<button mat-button *ngIf="isNewModel()" (click)="onCreate()">Create</button>
+<button mat-button *ngIf="!isNewModel()" (click)="onUpdate()">Update</button>

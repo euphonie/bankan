@@ -1,0 +1,7 @@
+ul {
+    list-style: none;
+}
+
+.task-item {
+    padding-bottom: 16px;
+}

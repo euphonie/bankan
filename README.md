@@ -68,12 +68,17 @@ Idea: User can be assigned to workspaces which contain custom setings like: user
 ## Running Locally
 
 ```sh
-# Running backend
+# == Running backend ==
 cd backend
 pip install -r requirements.txt
 
-# Dev server starts at port 8000
+## Dev server starts at port 8000
 python manage.py runserver 
+
+## == Running frontend == 
+cd app
+ng serve
+
 ```
 
 ## Roadmap

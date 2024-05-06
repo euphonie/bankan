@@ -1,9 +1,5 @@
 import { NgModule } from "@angular/core";
 import { TaskCardComponent } from "./task-card/task-card.component";
-import { StoreModule } from "@ngrx/store";
-import { tasksReducer } from "./tasks.reducers";
-import { EffectsModule } from "@ngrx/effects";
-import { TasksEffects } from "./tasks.effects";
 import {MatCardModule} from '@angular/material/card';
 import { TaskListComponent } from "./task-list/task-list.component";
 import { CommonModule } from "@angular/common";
@@ -12,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TaskFormComponent } from "./task-form/task-form.component";
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
     declarations: [TaskCardComponent, TaskListComponent, TaskModalComponent, TaskFormComponent],
@@ -19,10 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
         CommonModule,
         MatCardModule,
         MatDialogModule,
+        MatListModule,
         MatButtonModule,
         ReactiveFormsModule,
-        StoreModule.forFeature('tasks', tasksReducer),
-        EffectsModule.forFeature([TasksEffects])
     ],
     exports: [TaskCardComponent, TaskListComponent, TaskModalComponent, TaskFormComponent]
 })

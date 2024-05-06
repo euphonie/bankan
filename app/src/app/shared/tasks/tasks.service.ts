@@ -1,17 +1,22 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Task } from "./tasks.model";
+import { TaskDto } from "./tasks.model";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class TaskService {
-    private apiUrl = 'http://localhost:8000/api/tasks';
+    private apiUrl = `${environment.apiUrl}/tasks/`;
 
     constructor(private http: HttpClient) {}
 
-    getTasks(): Observable<Task[]> {
-        return this.http.get<Task[]>(this.apiUrl);
+    getTasks(): Observable<TaskDto[]> {
+        return this.http.get<TaskDto[]>(this.apiUrl);
+    }
+
+    addTask(task: TaskDto): Observable<TaskDto> {
+        return this.http.post<TaskDto>(this.apiUrl, task);
     }
 }
