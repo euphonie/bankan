@@ -34,7 +34,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
         provide: MAT_DIALOG_DEFAULT_OPTIONS, 
         useValue: {
             height: '500px',
-            width: '500px',
+            width: '90vw',
             autoFocus: true,
         }
     }],

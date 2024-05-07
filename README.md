@@ -62,6 +62,10 @@ Idea: User can be assigned to workspaces which contain custom setings like: user
 
 ### Diagrams
 
+Some screenshots of the frontend application are available at `docs/screenshots`
+
+
+
 ## Setup
 
 
@@ -74,6 +78,9 @@ pip install -r requirements.txt
 
 ## Dev server starts at port 8000
 python manage.py runserver 
+
+## Swagger (OpenAPI) specification should be available at http://localhost:8000/swagger/
+
 
 ## == Running frontend == 
 cd app

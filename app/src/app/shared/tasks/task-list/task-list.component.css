@@ -1,8 +1,4 @@
-ul {
-    list-style: none;
-    padding: 0;
-}
-
 .task-item {
+    padding: 10px;
     padding-bottom: 16px;
 }

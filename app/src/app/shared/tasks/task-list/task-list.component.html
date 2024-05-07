@@ -4,8 +4,8 @@
 <div *ngIf="error$ | async">Error: {{ errorMessage }}</div>
 
 
-<ul *ngIf="(tasksWithStatus$ | async) as tasks">
+<div *ngIf="(tasksWithStatus$ | async) as tasks">
     <li class="task-item" *ngFor="let task of tasks">
         <app-task-card [task]="task"></app-task-card>
     </li>
-</ul>
+</div>
