@@ -6,24 +6,32 @@ Yet another kanban task management tracker
 
 ### Frontend (app)
 
-- NPM -
+- NPM
 - Angular 17 - https://angular.io/
 - NgRx - https://ngrx.io/
 - Material UI - https://mui.com/
-- Karma + Protractor (or) Playwright
+- Playwright - https://playwright.dev/docs/codegen
 
 ### Backend (api)
 
 - Pip
 - Django
 - PostgreSQL
-- Pytest
 - OpenAPI
 
 
 ### Infrastructure (infra)
 
 - Docker Containers
+
+```sh
+cd infra 
+docker compose up -d
+# frontend will be available at http://localhost:80 
+# and backend at http://localhost:8000
+```
+
+![Docker IAC](https://github.com/euphonie/bankan/blob/master/docs/screenshots/docker-iac.png?raw=true)
 
 ## Design
 
@@ -106,6 +114,24 @@ python manage.py runserver
 cd app
 ng serve
 
+```
+
+## Tests
+
+### Backend
+
+```sh
+# APITestCase can be run with the following command.
+# it helps test the /task endpoint for creation and reading 
+python manage.py test
+```
+
+### Frontend
+
+```sh
+# E2E smoke test (testing overall functionality of the app) can be run with the following command.
+# Important: docker containers must be running
+npx playwright test
 ```
 
 ## Roadmap
