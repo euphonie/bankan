@@ -81,6 +81,16 @@ Some screenshots of the frontend application are available at `docs/screenshots`
 
 ## Running Locally
 
+### Docker compose
+
+```sh
+cd infra 
+docker compose up -d
+# frontend will be available at http://localhost:80 
+# and backend at http://localhost:8000
+```
+
+### Separate
 ```sh
 # == Running backend ==
 cd backend
