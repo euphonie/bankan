@@ -1,0 +1,11 @@
+.brand-name {
+    width: 100%;
+    text-align: center;
+}
+
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}

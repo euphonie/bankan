@@ -1,4 +1,6 @@
-<div *ngIf="loading$ | async">Loading...</div>
+<div *ngIf="loading$ | async" fxLayout="row" fxLayoutAlign="center">
+    <mat-spinner diameter="30" color="primary"></mat-spinner>
+</div>
 <div *ngIf="error$ | async">Error: {{ errorMessage }}</div>
 
 

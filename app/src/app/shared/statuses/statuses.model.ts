@@ -4,6 +4,11 @@ export enum StatusType {
     'FINAL'
 }
 
+export const STATUS = {
+    PENDING: 1,
+    COMPLETED: 2,
+}
+
 export interface Status {
     id: number;
     description: string;

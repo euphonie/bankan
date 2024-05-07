@@ -1,5 +1,8 @@
 <div class="hero-section">
-    <h1 class="title">My tasks (Workspace name)</h1>
-    <button mat-raised-button color="primary" (click)="openCreateTaskModal()">Add task</button>
+    <h1 class="title">My tasks (Workspace name)
+        <button mat-raised-button color="primary" (click)="openCreateTaskModal()">
+            <mat-icon>add</mat-icon>
+            Add task</button>
+    </h1>
+    <app-task-list></app-task-list>
 </div>  
-<app-task-list></app-task-list>

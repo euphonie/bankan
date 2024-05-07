@@ -12,6 +12,9 @@ import { MatListModule } from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatIconModule } from "@angular/material/icon";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [TaskCardComponent, TaskListComponent, TaskModalComponent, TaskFormComponent],
@@ -23,8 +26,11 @@ import {MatSelectModule} from '@angular/material/select';
         MatButtonModule,
         MatInputModule,
         MatSelectModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
         MatFormFieldModule,
         ReactiveFormsModule,
+        FlexLayoutModule,
     ],
     exports: [TaskCardComponent, TaskListComponent, TaskModalComponent, TaskFormComponent]
 })

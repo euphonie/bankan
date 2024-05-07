@@ -89,4 +89,14 @@ ng serve
 - List tasks (minimal ui + backend crud)
 
 ### v0.0.2
--
+- Create/Edit/Soft Delete tasks
+- Quick action mark as completed/pending
+
+### v0.0.3
+- Hide completed tasks in a section at the bottom
+
+### v0.0.4
+- Create multiple columns for each status in the workspace and place tasks separated by status.
+
+### v0.0.5
+- Implement integration of workspaces to handle dynamic status definition

@@ -2,8 +2,10 @@ import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@ang
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Task } from '../tasks.model';
 import { addTask, editTask } from '../tasks.actions';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../app.state';
+import { selectTasksLoading } from '../tasks.selectors';
+import { Observable } from 'rxjs';
 
 export enum ModalAction {
   'CREATE',
@@ -22,11 +24,14 @@ export interface ModalData {
 })
 export class TaskModalComponent implements OnInit {
   
+  loading$!: Observable<boolean>;
+
   newTask: Task = {
     title: '',
     statusId: 1,
     created_at: new Date(),
     updated_at: new Date(),
+    deleted_at: undefined,
     owner: 1,
     assigned_to: 1
   };
@@ -37,6 +42,7 @@ export class TaskModalComponent implements OnInit {
     if (this.data.action === ModalAction.CREATE) {
       this.data.task = this.newTask;
     }
+    this.loading$ = this.store.pipe(select(selectTasksLoading));
   }
   
   close(): void {
@@ -48,11 +54,12 @@ export class TaskModalComponent implements OnInit {
     return !this.data.task || !this.data.task.id;
   }
 
-  onCreate(): void {
+  onAdd(): void {
     this.store.dispatch(addTask({task: this.data.task}));
   }
 
-  onUpdate(): void {
+  onEdit(): void {
     this.store.dispatch(editTask({task: this.data.task}));
   }
+  
 }

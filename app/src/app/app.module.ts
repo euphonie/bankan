@@ -9,10 +9,10 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { tasksReducer } from "./shared/tasks/tasks.reducers";
 import { TasksEffects } from "./shared/tasks/tasks.effects";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { statusesReducer } from "./shared/statuses/statuses.reducers";
 import { StatusesEffects } from "./shared/statuses/statuses.effects";
 import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
     declarations: [
@@ -28,11 +28,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
         DashboardModule,
         SharedModule,
         HttpClientModule,
-        StoreDevtoolsModule.instrument({
-            name: 'DevTools & Debugging in NgRx',
-            maxAge: 25, // Retains last 25 states
-            logOnly: true, // Restrict extension to log-only mode
-          }),
+        FlexLayoutModule,
     ],
     providers: [provideAnimationsAsync(), {
         provide: MAT_DIALOG_DEFAULT_OPTIONS, 

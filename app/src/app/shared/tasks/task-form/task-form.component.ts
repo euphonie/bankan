@@ -37,7 +37,6 @@ export class TaskFormComponent implements OnInit {
     this.form.valueChanges.subscribe(value => {
       this.task.title = value.title;
       this.task.statusId = value.statusId;
-      console.log(this.task);
     });
   }
 }

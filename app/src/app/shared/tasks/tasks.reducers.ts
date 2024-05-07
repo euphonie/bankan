@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Task } from "./tasks.model";
-import { addTask, addTaskFailure, addTaskSuccess, editTask, editTaskFailure, editTaskSuccess, loadTasks, loadTasksFailure, loadTasksSuccess } from './tasks.actions';
+import { addTask, addTaskFailure, addTaskSuccess, editTask, editTaskFailure, editTaskSuccess, loadTasks, loadTasksFailure, loadTasksSuccess, softDeleteTask, softDeleteTaskFailure, softDeleteTaskSuccess } from './tasks.actions';
 
 export interface TaskState {
     tasks: Task[];
@@ -65,6 +65,23 @@ export const tasksReducer = createReducer(
         loading: false,
     })),
     on(editTaskFailure, (state: TaskState, {error}) => ({
+        ...state,
+        loading: false,
+        error
+    })),
+    // softdelete
+    on(softDeleteTask, state => ({
+        ...state, 
+        loading: true,
+        error: null
+    })),
+    on(softDeleteTaskSuccess, (state: TaskState, {task}) => ({
+        ...state,
+        tasks: state.tasks.filter((oldTask) => (oldTask.id !== task.id)),
+        error: null,
+        loading: false,
+    })),
+    on(softDeleteTaskFailure, (state: TaskState, {error}) => ({
         ...state,
         loading: false,
         error

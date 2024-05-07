@@ -1,0 +1,17 @@
+.grid {
+    overflow-y: auto;
+    height: calc(100vh - 20px);
+}
+
+.hero-section {
+    padding: 65px 25px 0 25px;
+
+    .title {
+        width: 100%;
+        margin: 25px 0;
+
+        button {
+            float: right;
+        }
+    }
+}

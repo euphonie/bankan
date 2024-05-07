@@ -1,10 +1,18 @@
-<h1 mat-dialog-title>Title
+<div  fxLayout="row" fxLayoutAlign="center center">
+    <h1 mat-dialog-title fxFlex="80">{{ isNewModel() ? 'Create a new Task' : 'Edit Task' }}</h1>
     <button mat-button (click)="close()">Close</button>
-</h1>
+</div>
 <div mat-dialog-content>
     <app-task-form [task]="data.task"></app-task-form>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close *ngIf="isNewModel()" (click)="onCreate()">Create</button>
-    <button mat-button mat-dialog-close *ngIf="!isNewModel()" (click)="onUpdate()">Update</button>
+    <button mat-button mat-dialog-close *ngIf="isNewModel()" (click)="onAdd()">
+        <span *ngIf="!(loading$ | async)">Add</span>
+        <mat-progress-spinner *ngIf="loading$ | async" diameter="20" mode="indeterminate"></mat-progress-spinner>
+    </button>
+    
+    <button  mat-button mat-dialog-close *ngIf="!isNewModel()"  (click)="onEdit()">
+        <span *ngIf="!(loading$ | async)">Edit</span>
+        <mat-progress-spinner *ngIf="loading$ | async" diameter="20" mode="indeterminate"></mat-progress-spinner>
+    </button>
 </div>
