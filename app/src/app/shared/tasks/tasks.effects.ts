@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap, of, switchMap } from "rxjs";
-import { loadTasksFailure, loadTasksSuccess, loadTasks, addTask, addTaskSuccess, addTaskFailure, editTaskFailure, editTaskSuccess, editTask, softDeleteTask, softDeleteTaskSuccess, softDeleteTaskFailure } from "./tasks.actions";
+import { loadTasksFailure, loadTasksSuccess, loadTasks, addTask, addTaskSuccess, addTaskFailure, editTaskFailure, editTaskSuccess, editTask, softDeleteTask, softDeleteTaskSuccess, softDeleteTaskFailure, restoreTask, restoreTaskSuccess, restoreTaskFailure } from "./tasks.actions";
 import { TaskService } from "./tasks.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Task, TaskDto } from "./tasks.model";
@@ -59,6 +59,23 @@ export class TasksEffects {
                 ).pipe(
                     map((task: TaskDto) => {return softDeleteTaskSuccess({ task: this.dtoToModel(task) })}),
                     catchError(error => of(softDeleteTaskFailure({ error })))
+                )
+            )
+        )
+    );
+
+    restoreTask$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(restoreTask),
+            switchMap(action =>
+                this.taskService.editTask(
+                    this.modelToDto({
+                        ...action.task,
+                        deleted_at: null,
+                    })
+                ).pipe(
+                    map((task: TaskDto) => {return restoreTaskSuccess({ task: this.dtoToModel(task) })}),
+                    catchError(error => of(restoreTaskFailure({ error })))
                 )
             )
         )

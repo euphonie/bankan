@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../tasks.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -18,7 +18,8 @@ export class TaskFormComponent implements OnInit {
 
   statuses$: Observable<Status[]>;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>
+  ) {
     this.statuses$ = this.store.pipe(select(selectStatuses));
 
     this.form = this.fb.group({
@@ -26,6 +27,7 @@ export class TaskFormComponent implements OnInit {
       'statusId': [this.task?.statusId ?? undefined]
     });
   }
+
   ngOnInit(): void {
     if (this.task) {
       this.form = this.fb.group({

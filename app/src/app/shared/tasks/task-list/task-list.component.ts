@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Task } from '../tasks.model';
 import { Store, select } from '@ngrx/store';
-import { loadTasks, softDeleteTaskSuccess } from '../tasks.actions';
+import { editTask, loadTasks, restoreTask, softDeleteTask, softDeleteTaskSuccess } from '../tasks.actions';
 import { selectTasksError, selectTasksLoading, selectTasksWithStatus } from '../tasks.selectors';
 import { AppState } from '../../../app.state';
 import { loadStatuses } from '../../statuses/statuses.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { NotificationsService } from '../../../core/NotificationsService';
 
 @Component({
   selector: 'app-task-list',
@@ -26,12 +27,24 @@ export class TaskListComponent implements OnInit {
   softDeletedTaskSuccess$ = createEffect(() => 
     this.actions$.pipe(
       ofType(softDeleteTaskSuccess),
-    ), {dispatch: false}).subscribe((task) => {
-      console.log(task);
+    )).subscribe((actionResponse) => {
+      
+      this.notificationService.triggerNotification(
+        'Want to restore the item that was deleted?',
+        'default-notification',
+        'Restore',
+        () => {
+          const restoredTask = {...actionResponse.task, 
+            deleted_at: null
+          };
+          this.store.dispatch(restoreTask({task: restoredTask}));
+        },
+        6000,
+      )
     });
 
 
-  constructor(private store:Store<AppState>, private actions$: Actions) {}
+  constructor(private store:Store<AppState>, private actions$: Actions, private notificationService: NotificationsService) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadTasks());

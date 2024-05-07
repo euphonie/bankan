@@ -6,7 +6,7 @@ export interface TaskDto {
     status: number;
     created_at: Date;
     updated_at: Date;
-    deleted_at?: Date;
+    deleted_at?: Date | null;
     owner: number;
     assigned_to: number;
 }
@@ -18,7 +18,7 @@ export interface Task {
     status?: Status;
     created_at: Date;
     updated_at: Date;
-    deleted_at?: Date;
+    deleted_at?: Date | null;
     owner: number;
     assigned_to: number;
 }

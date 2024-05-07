@@ -17,3 +17,7 @@ export const editTaskFailure = createAction('[TASK] Edit Task Failure', props<{e
 export const softDeleteTask = createAction('[TASK] Soft Delete Task', props<{task: Task}>())
 export const softDeleteTaskSuccess = createAction('[TASK] Soft Delete Task Success', props<{task: Task}>())
 export const softDeleteTaskFailure = createAction('[TASK] Soft Delete Task Error', props<{error: HttpErrorResponse}>())
+
+export const restoreTask = createAction('[TASK] Restore Task', props<{task: Task}>())
+export const restoreTaskSuccess = createAction('[TASK] Restore Task Success', props<{task: Task}>())
+export const restoreTaskFailure = createAction('[TASK] Restore Task Error', props<{error: HttpErrorResponse}>())
