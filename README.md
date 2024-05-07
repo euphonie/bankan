@@ -64,6 +64,16 @@ Idea: User can be assigned to workspaces which contain custom setings like: user
 
 Some screenshots of the frontend application are available at `docs/screenshots`
 
+#### Main View
+![Main View](https://github.com/euphonie/bankan/blob/master/docs/screenshots/dashboard.png?raw=true)
+#### Editing tasks
+![Editing tasks](https://github.com/euphonie/bankan/blob/master/docs/screenshots/edit.png?raw=true)
+#### Creating tasks
+![Creating tasks](https://github.com/euphonie/bankan/blob/master/docs/screenshots/create.png?raw=true)
+#### Marking tasks as completed / pending
+![Marking tasks as completed or as pending](https://github.com/euphonie/bankan/blob/master/docs/screenshots/completed-tasks.png?raw=true)
+#### Soft deleting or restoring 
+![Soft deleting / Restoring tasks](https://github.com/euphonie/bankan/blob/master/docs/screenshots/soft-delete-and-restore.png?raw=true)
 
 
 ## Setup
