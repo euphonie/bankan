@@ -3,9 +3,29 @@
 </div>
 <div *ngIf="error$ | async">Error: {{ errorMessage }}</div>
 
-
-<div *ngIf="(tasksWithStatus$ | async) as tasks">
-    <li class="task-item" *ngFor="let task of tasks">
-        <app-task-card [task]="task"></app-task-card>
-    </li>
+<div fxLayout="row" fxLayoutAlign="center">
+    <form [formGroup]="form">
+        <mat-form-field>
+            <mat-select formControlName="selectedStatus">
+                <mat-option name="status" [value]="1"> Pending</mat-option>
+                <mat-option name="status" [value]="2"> Completed</mat-option> 
+            </mat-select>
+        </mat-form-field>
+        <div *ngIf="filterState.selectedStatus===1" >
+            <div *ngIf="(pendingTasks$ | async) as tasks">
+                <li class="task-item" *ngFor="let task of tasks">
+                    <app-task-card [task]="task"></app-task-card>
+                </li>
+            </div>
+        
+        </div>
+        <div *ngIf="filterState.selectedStatus===2">
+            <div *ngIf="(completedTasks$ | async) as tasks">
+                <li class="task-item" *ngFor="let task of tasks">
+                    <app-task-card [task]="task"></app-task-card>
+                </li>
+            </div>
+        
+        </div>
+    </form>
 </div>

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, filter } from 'rxjs';
 import { Task } from '../tasks.model';
 import { Store, select } from '@ngrx/store';
-import { editTask, loadTasks, restoreTask, softDeleteTask, softDeleteTaskSuccess } from '../tasks.actions';
-import { selectTasksError, selectTasksLoading, selectTasksWithStatus } from '../tasks.selectors';
+import { loadTasks, restoreTask, softDeleteTaskSuccess } from '../tasks.actions';
+import { selectCompletedTasks, selectPendingTasks, selectTasksError, selectTasksLoading } from '../tasks.selectors';
 import { AppState } from '../../../app.state';
 import { loadStatuses } from '../../statuses/statuses.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { NotificationsService } from '../../../core/NotificationsService';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
@@ -17,9 +18,15 @@ import { NotificationsService } from '../../../core/NotificationsService';
 })
 export class TaskListComponent implements OnInit {
 
-  tasksWithStatus$!: Observable<Task[]>;
+  pendingTasks$!: Observable<Task[]>;
+  completedTasks$!: Observable<Task[]>;
   loading$!: Observable<boolean>;
   error$!: Observable<HttpErrorResponse>;
+
+  form!: FormGroup;
+  filterState = {
+    selectedStatus: 1
+  };
 
   errorMessage: string = '';
 
@@ -44,15 +51,28 @@ export class TaskListComponent implements OnInit {
     });
 
 
-  constructor(private store:Store<AppState>, private actions$: Actions, private notificationService: NotificationsService) {}
+  constructor(private store:Store<AppState>, private actions$: Actions, private notificationService: NotificationsService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      selectedStatus: [this.filterState.selectedStatus]
+    })
+  }
 
   ngOnInit(): void {
     this.store.dispatch(loadTasks());
     this.store.dispatch(loadStatuses());
 
-    this.tasksWithStatus$ = this.store.pipe(select(selectTasksWithStatus));
+    this.pendingTasks$ = 
+      this.store.pipe(select(selectPendingTasks));
+    this.completedTasks$ = 
+      this.store.pipe(select(selectCompletedTasks));
     this.loading$ = this.store.pipe(select(selectTasksLoading));
     this.error$ = this.store.pipe(select(selectTasksError));
+
+    
+    this.form.valueChanges.subscribe((value) => {
+      this.filterState.selectedStatus = Number(value.selectedStatus);
+      console.log(value);
+    })
 
     this.error$.subscribe(err =>  {
       if (!err) return;
